@@ -1,4 +1,25 @@
 .vscode
 bin
 obj
-*/node_modules
+
+# dependencies
+wwwroot/node_modules
+wwwroot/.pnp
+wwwroot/.pnp.js
+
+# testing
+wwwroot/coverage
+
+# production
+wwwroot/build
+
+# misc
+wwwroot/.DS_Store
+wwwroot/.env.local
+wwwroot/.env.development.local
+wwwroot/.env.test.local
+wwwroot/.env.production.local
+
+wwwroot/npm-debug.log*
+wwwroot/yarn-debug.log*
+wwwroot/yarn-error.log*
