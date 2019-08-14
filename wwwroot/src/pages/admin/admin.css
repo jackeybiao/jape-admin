@@ -1,0 +1,59 @@
+.index .index-title {
+  text-align: left;
+}
+.index .index-item {
+  display: block;
+  padding: 5px;
+  text-align: left;
+  margin: 5px 0;
+  box-shadow: 1px 2px 3px rgba(200,200,200,0.8);
+  background-color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  color: #666;
+  transition: 460ms;
+}
+.index .index-item a {
+  display: block;
+  text-decoration: none;
+  color: #666;
+}
+.index .index-item:hover {
+  box-shadow: 2px 3px 6px rgba(200,200,200,0.8);
+  background-color: #eee;
+}
+.index .index-item .title::before{
+  content:'标题:';
+}
+.index .index-item .author::before{
+  content:'作者:';
+}
+.index .index-item .content{
+  margin: 15px 0;
+}
+.index .index-item .btn-box button:first-child{
+  margin-right: 5px;
+}
+
+.post-content {
+  width: 512px;
+  margin: 0 auto;
+}
+.post-content form .form-group {
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+}
+.post-content form .form-group label {
+  width: 10%;
+}
+.post-content form .form-group input {
+  width: 90%;
+  padding: 5px;
+}
+.post-content form .form-group textarea {
+  width: 90%;
+  padding: 5px;
+}
