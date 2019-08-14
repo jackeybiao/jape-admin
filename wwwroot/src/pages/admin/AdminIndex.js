@@ -9,7 +9,7 @@ import './admin.css';
 export function AdminIndex(){
 
   let data = useFetch(baseUrl + 'api/Posts');
-
+  
   return (
     <div className="index">
       <div className="index-title">

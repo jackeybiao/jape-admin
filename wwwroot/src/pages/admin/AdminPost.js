@@ -7,6 +7,8 @@ import useFetch from '../useEffect/useFetch';
 
 import './admin.css';
 
+import './admin.css';
+
 export function AdminPost(){
 
   const [title,setTitle] = useState("");
