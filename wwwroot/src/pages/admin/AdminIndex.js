@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import { Link } from "react-router-dom";
-
-import { baseUrl } from "../../config/config";
-import useFetch from '../useEffect/useFetch';
-
+import { getPosts, deletePost } from '../../api/japeApi';
 import './admin.css';
 
 export function AdminIndex(){
+  const [data,setData] = useState([]);
+  const [update,setUpdate] = useState(false)
 
-  let data = useFetch(baseUrl + 'api/Posts');
-  
+  useEffect(() => {
+    getPosts().then(response => {
+      setData(response);
+    })
+  },[update])
+
+  function deletePostItem(e){
+    deletePost(e.target.dataset.id).then(response => {
+      setUpdate(!update)
+      alert("删除成功")
+    })
+  }
+
+
   return (
     <div className="index">
       <div className="index-title">
@@ -25,7 +36,7 @@ export function AdminIndex(){
             </Link>
             <div className="btn-box">
               <button><Link to={"/post/" + item.id}>编辑</Link></button>
-              <button>删除</button>
+              <button data-id={item.id} onClick={e => {deletePostItem(e)}}>删除</button>
             </div>
           </div>
         )

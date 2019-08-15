@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 
-export default function useFetch(url,params,method = 'GET') {
-  const [data, setData] = useState([]);
 
+
+export default function useFetch(url,params) {
+  
+  const [data, setData] = useState([]);
+  
   useEffect(() => {
     fetch(url,{
-        method: method,
+        method: "GET",
         body: JSON.stringify(params),
         headers: new Headers({
           'Content-Type': 'application/json'

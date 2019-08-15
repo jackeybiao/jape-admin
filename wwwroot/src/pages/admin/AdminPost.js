@@ -1,40 +1,78 @@
-import React, { useState } from 'react';
-
-import { Route } from "react-router-dom";
-
-import { baseUrl } from "../../config/config";
-import useFetch from '../useEffect/useFetch';
-
+import React, { Component } from 'react';
+import { savePost,getPost,updatePost } from '../../api/japeApi';
 import './admin.css';
 
-import './admin.css';
-
-export function AdminPost(){
-
-  const [title,setTitle] = useState("");
-  const [content,setContent] = useState("");
-
-  const handleSave = e => {
-    e.preventDefault();
+export class AdminPost extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      id:'',
+      title:'',
+      content:''
+    };
+    this.handleChange = this.handleChange.bind(this)
+    this.handleChangeArea = this.handleChangeArea.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  useFetch(baseUrl+ "api/Posts",{title:title,content:content},"POST");
+  componentDidMount() {
+    let id = window.location.href.split("/")[4];
+    getPost(id).then(response=>{
+      this.setState({
+        id:response.id || '',
+        title:response.title || '',
+        content:response.content || '',
+      })
+    })
+  }
 
-  return (
-    <div className="post-content">
-      <form onSubmit={handleSave}>
-        <div className="form-group">
-          <label htmlFor="">标题</label>
-          <input onChange={e=>setTitle(e.target.value)} type="text" value={title} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="">正文</label>
-          <textarea onChange={e=>{setContent(e.target.value)}} name="" value={content} id="content" cols="30" rows="10"></textarea>
-        </div>
-        <div className="form-group">
-          <button onClick={handleSave}>保存</button>
-        </div>
-      </form>
-    </div>
-  )
+  handleChange(event){
+    this.setState({
+      title:event.target.value
+    })
+  }
+
+  handleChangeArea(event){
+    this.setState({
+      content:event.target.value
+    })
+  }
+
+  handleSubmit() {
+    let parmas = {}
+    if(this.state.id){
+      parmas = {
+        id:this.state.id,
+        title:this.state.title,
+        content:this.state.content,
+      }
+      updatePost(parmas).then(response=>{
+        this.props.history.push('/')
+      })
+    }else{
+      parmas = {
+        title:this.state.title,
+        content:this.state.content,
+      }
+      savePost(parmas).then(response=>{
+        this.props.history.push('/')
+      })
+    }
+  }
+  
+  render() {
+    return (
+      <div className="post-content">
+        <form>
+          <div className="form-group">
+            <input value={this.state.title} onChange={this.handleChange} type="text" placeholder="标题" />
+          </div>
+          <div className="form-group">
+            <textarea value={this.state.content} onChange={this.handleChangeArea} name="" placeholder="内容" id="" cols="30" rows="10"></textarea>
+          </div>
+          <button onClick={this.handleSubmit}>提交</button>
+        </form>
+      </div>
+    )
+  }
 }
