@@ -16,7 +16,7 @@ export class AdminPost extends Component {
   }
 
   componentDidMount() {
-    let id = window.location.href.split("/")[4];
+    let id = this.props.location.pathname.split('/')[2];
     getPost(id).then(response=>{
       this.setState({
         id:response.id || '',
@@ -38,7 +38,8 @@ export class AdminPost extends Component {
     })
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     let parmas = {}
     if(this.state.id){
       parmas = {
@@ -46,7 +47,7 @@ export class AdminPost extends Component {
         title:this.state.title,
         content:this.state.content,
       }
-      updatePost(parmas).then(response=>{
+      updatePost(parmas).then(response => {
         this.props.history.push('/')
       })
     }else{
