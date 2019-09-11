@@ -1,28 +1,49 @@
+# c#
 .vscode
 bin
 obj
 
-# dependencies
-wwwroot/node_modules
-wwwroot/.pnp
-wwwroot/.pnp.js
+# compiled output
+*/node_modules
+*/dist
+*/tmp
+*/out-tsc
+# Only exists if Bazel was run
+*/bazel-out
 
-# testing
-wwwroot/coverage
+# profiling files
+*/chrome-profiler-events.json
+*/speed-measure-plugin.json
 
-# production
-wwwroot/build
+# IDEs and editors
+*/.idea
+*/.project
+*/.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
 
 # misc
-wwwroot/.DS_Store
-wwwroot/.env.local
-wwwroot/.env.development.local
-wwwroot/.env.test.local
-wwwroot/.env.production.local
 
-wwwroot/npm-debug.log*
-wwwroot/yarn-debug.log*
-wwwroot/yarn-error.log*
+*/.sass-cache
+*/connect.lock
+*/coverage
+*/libpeerconnection.log
+*/npm-debug.log
+*/yarn-error.log
+*/testem.log
+*/typings
 
+# System Files
+**/.DS_Store
+Thumbs.db
 
-**.DS_Store
